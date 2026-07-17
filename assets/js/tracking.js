@@ -6,7 +6,7 @@
 (function () {
   const C = window.SITE_CONFIG || {};
   const CLICK_ID_KEYS = ['gclid', 'gbraid', 'wbraid'];
-  const DEFAULT_GOOGLE_ADS_SEND_TO = 'AW-17528466836/9BwoCJ-LjqccEJTbnKZB';
+  const DEFAULT_GOOGLE_ADS_SEND_TO = 'AW-18095406827/yn7HCPjP_tEcEOv9x7RD';
   const CASHBOLT_SUBMIT_SESSION_KEY = 'df_cashbolt_submit';
 
   function getURLParam(name) {
@@ -194,11 +194,11 @@
     });
   }
 
-  window.getCrazy MarketingTrackingContext = getTrackingContext;
-  window.appendCrazy MarketingTrackingParams = appendTrackingParams;
-  window.markCrazy MarketingCashboltSubmit = markCashboltFormSubmitted;
+  window.getCrazyMarketingTrackingContext = getTrackingContext;
+  window.appendCrazyMarketingTrackingParams = appendTrackingParams;
+  window.markCrazyMarketingCashboltSubmit = markCashboltFormSubmitted;
 
-  window.fireCrazy MarketingThankYouConversion = function (options) {
+  window.fireCrazyMarketingThankYouConversion = function (options) {
     options = options || {};
     const cfg = window.SITE_CONFIG || {};
 
@@ -227,7 +227,7 @@
     const sendTo = options.send_to || cfg.GOOGLE_ADS_CONVERSION_SEND_TO || DEFAULT_GOOGLE_ADS_SEND_TO;
     const payload = {
       send_to: sendTo,
-      value: options.value != null ? options.value : (cfg.CONVERSION_VALUE != null ? cfg.CONVERSION_VALUE : 21),
+      value: options.value != null ? options.value : (cfg.CONVERSION_VALUE != null ? cfg.CONVERSION_VALUE : 15.0),
       currency: options.currency || cfg.CONVERSION_CURRENCY || 'EUR',
       transaction_id: transactionId,
       campaign_id: T.campaign_id || '',
@@ -296,7 +296,7 @@
 // ---- PUBLIC API ----
 window.trackInitiateCheckout = function () {
   const C = window.SITE_CONFIG || {};
-  const T = window.getCrazy MarketingTrackingContext ? window.getCrazy MarketingTrackingContext() : {};
+  const T = window.getCrazyMarketingTrackingContext ? window.getCrazyMarketingTrackingContext() : {};
   if (window.fbq) window.fbq('track', 'InitiateCheckout');
   if (window.gtag && C.GOOGLE_ADS_CONVERSION_ID) {
     window.gtag('event', 'begin_checkout', {
@@ -311,7 +311,7 @@ window.trackInitiateCheckout = function () {
 
 window.trackLead = function () {
   const C = window.SITE_CONFIG || {};
-  const T = window.getCrazy MarketingTrackingContext ? window.getCrazy MarketingTrackingContext() : {};
+  const T = window.getCrazyMarketingTrackingContext ? window.getCrazyMarketingTrackingContext() : {};
   if (window.fbq) window.fbq('track', 'Lead');
   if (window.gtag && C.GOOGLE_ADS_CONVERSION_ID && C.GOOGLE_ADS_CONVERSION_LABEL) {
     window.gtag('event', 'conversion', {
@@ -327,12 +327,12 @@ window.trackLead = function () {
 };
 
 window.trackPurchase = function (value, currency) {
-  if (window.fireCrazy MarketingThankYouConversion) {
-    return window.fireCrazy MarketingThankYouConversion({ value: value, currency: currency });
+  if (window.fireCrazyMarketingThankYouConversion) {
+    return window.fireCrazyMarketingThankYouConversion({ value: value, currency: currency });
   }
 
   const C = window.SITE_CONFIG || {};
-  const T = window.getCrazy MarketingTrackingContext ? window.getCrazy MarketingTrackingContext() : {};
+  const T = window.getCrazyMarketingTrackingContext ? window.getCrazyMarketingTrackingContext() : {};
   if (window.fbq) {
     window.fbq('track', 'Purchase', {
       value: value || C.PRICE || 0,

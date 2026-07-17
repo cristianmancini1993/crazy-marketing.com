@@ -9,8 +9,8 @@
   }
 
   function getTrackingContext() {
-    if (window.getCrazy MarketingTrackingContext) {
-      return window.getCrazy MarketingTrackingContext();
+    if (window.getCrazyMarketingTrackingContext) {
+      return window.getCrazyMarketingTrackingContext();
     }
 
     const urlSubid = getURLParam('subid');
@@ -30,8 +30,8 @@
   }
 
   function appendTrackingParams(url, context) {
-    if (window.appendCrazy MarketingTrackingParams) {
-      return window.appendCrazy MarketingTrackingParams(url, context);
+    if (window.appendCrazyMarketingTrackingParams) {
+      return window.appendCrazyMarketingTrackingParams(url, context);
     }
 
     const out = new URL(url, window.location.origin);
