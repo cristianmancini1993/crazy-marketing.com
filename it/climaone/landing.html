@@ -45,6 +45,7 @@
   --shadow:0 8px 28px rgba(20,24,31,.07);
   --font: 'Poppins', 'Segoe UI', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
   --max-width:1120px;
+  --page-gutter:20px;
 }
 *{box-sizing:border-box; margin:0; padding:0; overflow-wrap:break-word;}
 html{ overflow-x:hidden; width:100%; }
@@ -80,14 +81,19 @@ img{max-width:100%; display:block;}
   object-position:center;
   display:block;
 }
-.wrap{max-width:var(--max-width); margin:0 auto; padding:0 20px;}
+.wrap{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding-left:var(--page-gutter);
+  padding-right:var(--page-gutter);
+}
 a{color:inherit;}
 
 /* ===== TOP BAR ===== */
-.topbar{ background:var(--color-text); color:#fff; text-align:center; font-size:13px; font-weight:700; padding:11px 12px; }
+.topbar{ background:var(--color-text); color:#fff; text-align:center; font-size:13px; font-weight:700; padding:11px var(--page-gutter); }
 
 /* ===== RATING STRIP ===== */
-.rating-strip{ text-align:center; padding:20px 16px 0; }
+.rating-strip{ text-align:center; padding:20px 0 0; }
 .rating-strip .stars{ color:var(--color-star); font-size:18px; letter-spacing:2px; }
 .rating-strip .rating-text{ font-size:14px; color:var(--color-text-muted); margin-top:6px; font-weight:600; }
 .rating-strip .rating-text strong{ color:var(--color-text); }
@@ -297,10 +303,33 @@ a{color:inherit;}
 .faq-item.open .faq-a{ max-height:260px; padding-bottom:16px; }
 
 /* ===== FOOTER ===== */
-.site-footer{ background:var(--color-text); color:#aab0bb; padding:28px 20px; font-size:13px; text-align:center; }
+.site-footer{ background:var(--color-text); color:#aab0bb; padding:28px var(--page-gutter); font-size:13px; text-align:center; }
 .site-footer a{ color:#fff; text-decoration:none; }
 .site-footer a:hover{ text-decoration:underline; }
 .site-footer__links{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px 18px; margin-bottom:12px; }
+
+/* ===== MOBILE GUTTER ===== */
+@media (max-width:959px){
+  :root{ --page-gutter:24px; }
+  .hero,
+  .why-block,
+  .compare,
+  .kit-section,
+  .faq,
+  .order-section .wrap,
+  .testimonials .wrap{
+    box-sizing:border-box;
+  }
+  .media-square,
+  .media-landscape,
+  .hero-image,
+  .why-img,
+  .t-media,
+  .kit-media{
+    width:100%;
+    max-width:100%;
+  }
+}
 
 /* ===== DESKTOP ===== */
 @media (min-width:960px){
